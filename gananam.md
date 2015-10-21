@@ -58,3 +58,9 @@ My current thinking is that the response for `wordcount.gananam.net` results in 
 ### Liveness Check
 
 Service nodes, on launch, sends a request to their management servers. This informs the management servers that they are alive and the management server can tell the service how often to send heartbeat messages. When the management node receives a heartbeat it attempts to issue an HTTP request to the service node. This should hopefully determine whether the node is accessible from the internet. If the request is successful the IP is kept in the list of live servers, and if not, it is discarded. The list is also pruned periodically of dead IPs.
+
+### Connection routing / establishment
+
+### Introducers / service DHT
+
+### HTTP request routing
