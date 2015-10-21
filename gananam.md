@@ -51,4 +51,4 @@ There are two classes of node in the system:
 
 The management node acts as a DNS nameserver. When issued requests for domains it returns back random sets of IPs from among its list of currently live hosts.
 
-Service nodes, on launch, sends a request to their management servers. This informs the management servers that they are alive and the management server can tell the service how often to send heartbeat messages.
+Service nodes, on launch, sends a request to their management servers. This informs the management servers that they are alive and the management server can tell the service how often to send heartbeat messages. When the management node receives a heartbeat it attempts to issue an HTTP request to the service node. This should hopefully determine whether the node is accessible from the internet. If the request is successful the IP is kept in the list of live servers, and if not, it is discarded. The list is also pruned periodically of dead IPs.
