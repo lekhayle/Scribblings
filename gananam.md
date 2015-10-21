@@ -49,6 +49,12 @@ There are two classes of node in the system:
 
 ### DNS Management
 
-The management node acts as a DNS nameserver. When issued requests for domains it returns back random sets of IPs from among its list of currently live hosts.
+The management node acts as a DNS nameserver. When issued requests for domains it returns back random sets of IPs from among its list of currently live hosts. The node uses a liveness check (described below) to maintain a list of IPs that it deems currently alive.
+
+The DNS protocol makes this slightly tricky, especially if there are many nodes, and made worse by trying to manage TTLs well.
+
+My current thinking is that the response for `wordcount.ganaman.net` results in a `CNAME` record pointing to `SOME-HASH.group.ganaman.net`. That `SOME-HASH.group.ganaman.net` returns a set of `A` records - on the order of about a dozen nodes. The CNAME record will expire, so periodically the set of nodes hosting a given service will rotate through the network. Each service will be CNAMED to a different subgroup, and the subgroup will change every few seconds. This will put significant load on the management node, but this should be horizontally scalable, with each node registered as a name server for the root domain.
+
+### Liveness Check
 
 Service nodes, on launch, sends a request to their management servers. This informs the management servers that they are alive and the management server can tell the service how often to send heartbeat messages. When the management node receives a heartbeat it attempts to issue an HTTP request to the service node. This should hopefully determine whether the node is accessible from the internet. If the request is successful the IP is kept in the list of live servers, and if not, it is discarded. The list is also pruned periodically of dead IPs.
