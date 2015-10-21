@@ -53,7 +53,7 @@ The management node acts as a DNS nameserver. When issued requests for domains i
 
 The DNS protocol makes this slightly tricky, especially if there are many nodes, and made worse by trying to manage TTLs well.
 
-My current thinking is that the response for `wordcount.gananam.net` results in a `CNAME` record pointing to `SOME-HASH.group.gananam.net`. That `SOME-HASH.group.gananam.net` returns a set of `A` records - on the order of about a dozen nodes. The CNAME record will expire, so periodically the set of nodes hosting a given service will rotate through the network. Each service will be CNAMED to a different subgroup, and the subgroup will change every few seconds. This will put significant load on the management node, but this should be horizontally scalable, with each node registered as a name server for the root domain.
+My current thinking is that the response for `wordcount.gananam.net` results in a `CNAME` record pointing to `SOME-HASH.group.gananam.net`. That `SOME-HASH.group.gananam.net` returns a set of `A` records - on the order of about a dozen nodes. The CNAME record will expire, so periodically the set of nodes hosting a given service will rotate through the network. Each service will be `CNAME`d to a different subgroup, and the subgroup will change every few seconds. This will put significant load on the management node, but this should be horizontally scalable, with each node registered as a name server for the root domain.
 
 ### Liveness Check
 
