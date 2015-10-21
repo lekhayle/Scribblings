@@ -30,7 +30,7 @@ When Bob requests `wordcounter.gananam.net` the first step is a DNS request to r
 
 The result is that Bob is given an IP to communicate with. The only thing that he can determine about this IP is that it hosts a gananam node. Nodes in the network know that there is a `wordcount` on the network, but do not know the IP of the host serving it. 
 
-One big difference between this system and other similar systems, is it does not aim to provide a single global network, but rather many smaller overlapping networks. Because there is a desire to make each service node an exit node (to borrow Tor terminology), the current issues around personal liability for network traffic is particularly acute. To resolve the issues having networks which have the ability to restrict membership allows the members of the network have some control over the traffic that exits across their personal internet connection without allowing for any given agenda unilaterally censor the entire network.
+One big difference between this system and other similar systems, is it does not aim to provide a single global network, but rather many smaller overlapping networks. Because there is a desire to make each service node an exit node (to borrow Tor terminology), the current issues around personal liability for network traffic is particularly acute. To resolve the issues having networks which have the ability to restrict membership allows the members of the network have some control over the traffic that exits across their personal internet connection without allowing any given agenda to unilaterally censor the entire network.
 
 ## Details
 
